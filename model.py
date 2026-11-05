@@ -24,7 +24,7 @@ Row = tuple[
 ]  # we have seven parameters in the old model, but this should technically be generic.
 
 def model_flat( #Model containing flat priors for all parameters
-    margin: ArrayLike,
+    margin: ArrayLike, #margin is observed
     carryover: Arraylike,
     offseasonChange: Arraylike,
     site: Arraylike,
@@ -35,8 +35,8 @@ def model_flat( #Model containing flat priors for all parameters
     # Flat distributions for all priors for first model
     p_carryover = numpyro.sample("carryover", dist.Uniform(0.0, 1.0))
     p_offseasonChange = numpyro.sample("offseasonChange", dist.Uniform(0.0, 1.0))
-    p_site = numpyro.sample("site", dist.Uniform(0.0, 1.0))
-    p_opponentELO = numpyro.sample("opponentELO", dist.Uniform(0.0, 1.0))
+    p_siteWeight = numpyro.sample("siteWeight", dist.Uniform(0.0, 1.0))
+    p_opponentELOWeight = numpyro.sample("opponentELOWeight", dist.Uniform(0.0, 1.0))
     p_longRunStrength = numpyro.sample("longRunStrength", dist.Uniform(0.0, 1.0))
     p_gameNoise = numpyro.sample("gameNoise", dist.Uniform(0.0, 1.0))
 
