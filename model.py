@@ -24,6 +24,7 @@ Row = tuple[
 ]  # we have seven parameters in the old model, but this should technically be generic.
 
 def model_flat( #Model containing flat priors for all parameters
+    margin: ArrayLike,
     carryover: Arraylike,
     offseasonChange: Arraylike,
     site: Arraylike,
