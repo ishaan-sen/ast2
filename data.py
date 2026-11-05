@@ -7,12 +7,16 @@ from numpy.typing import NDArray
 
 FloatArray = NDArray[np.float64] 
 
-
 @dataclasses.dataclass
 class ModelInputs:
-    # This should contain what were previously named rho, mu_F,
-    # and the other opaque names as objects of type FloatArray
-    pass
+    #Season
+    carryover: FloatArray #Parameter 1: Share of strength carried into next season (SP+)
+    offseasonChange: FloatArray #Parameter 2: Beginning of season uncertianty (SP+)
+    #Game
+    site: FloatArray #Parameter 3: site; home (1), away (-1), neutral (0)
+    opponentELO: FloatArray #Parameter 4: ELO rating of the opposing team (from data)
+    longRunStrength: FloatArray #Parameter 5: Long-run average team strength (SP+)
+    gameNoise: FloatArray #Parameter 6: Overall game noise, variance
 
 
 def load_data(data_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
