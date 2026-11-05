@@ -23,6 +23,25 @@ Row = tuple[
     Array, ...
 ]  # we have seven parameters in the old model, but this should technically be generic.
 
+def model_flat( #Model containing flat priors for all parameters
+    carryover: Arraylike,
+    offseasonChange: Arraylike,
+    site: Arraylike,
+    opponentELO: Arraylike,
+    longRunStrength: Arraylike,
+    gameNoise: Arraylike,
+) -> None:
+    # Flat distributions for all priors for first model
+    p_carryover = numpyro.sample("carryover", dist.Uniform(0.0, 1.0))
+    p_offseasonChange = numpyro.sample("offseasonChange", dist.Uniform(0.0, 1.0))
+    p_site = numpyro.sample("site", dist.Uniform(0.0, 1.0))
+    p_opponentELO = numpyro.sample("opponentELO", dist.Uniform(0.0, 1.0))
+    p_longRunStrength = numpyro.sample("longRunStrength", dist.Uniform(0.0, 1.0))
+    p_gameNoise = numpyro.sample("gameNoise", dist.Uniform(0.0, 1.0))
+
+    def step(carry: Carry, row: Row) -> tuple[Carry, tuple[Array, Array, Array]]:
+        
+        pass
 
 def model(
     margin: ArrayLike,
