@@ -54,11 +54,11 @@ def model_normals( #Model containing normally distributed priors for all paramet
     gameNoise: Arraylike,
 ) -> None:
     # Flat distributions for all priors for first model
-    p_carryover = numpyro.sample("carryover", dist.Normal(.4729, 8.093))
+    p_carryover = numpyro.sample("carryover", dist.Normal(.4729, 8.093)) #model with beta dist
     p_offseasonChange = numpyro.sample("offseasonChange", dist.Normal(6.333, 8.201))
     p_siteWeight = numpyro.sample("siteWeight", dist.Normal(7.326, 22.1))
     p_opponentELOWeight = numpyro.sample("opponentELOWeight", dist.Normal(0.03365, 18.425))
-    p_longRunStrength = numpyro.sample("longRunStrength", dist.Normal(6.333, 8.201))
+    p_longRunStrength = numpyro.sample("longRunStrength", dist.Normal(6.333, 8.201)) #Update later
     p_gameNoise = numpyro.sample("gameNoise", dist.Normal(0.0003, 20.035))
 
     def step(carry: Carry, row: Row) -> tuple[Carry, tuple[Array, Array, Array]]:
